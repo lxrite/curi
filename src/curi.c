@@ -1015,7 +1015,7 @@ static curi_status parse_path_absolute(const char* uri, size_t len, size_t* offs
 
     if (status == curi_status_success)
     {
-        size_t initialOffset = *offset;
+        size_t previousOffset = *offset;
         curi_status tryStatus = curi_status_success;
 
         if (tryStatus == curi_status_success)
@@ -1025,7 +1025,7 @@ static curi_status parse_path_absolute(const char* uri, size_t len, size_t* offs
             tryStatus = parse_segments(uri, len, offset, settings, userData);
 
         if (tryStatus == curi_status_error)
-            *offset = initialOffset;
+            *offset = previousOffset;
         else
             status = tryStatus;
     }
@@ -1044,7 +1044,7 @@ static curi_status parse_path_relative(const char* uri, size_t len, size_t* offs
 
     if (status == curi_status_success)
     {
-        size_t initialOffset = *offset;
+        size_t previousOffset = *offset;
         curi_status tryStatus = curi_status_success;
 
         if (tryStatus == curi_status_success)
@@ -1054,7 +1054,7 @@ static curi_status parse_path_relative(const char* uri, size_t len, size_t* offs
             tryStatus = parse_segments(uri, len, offset, settings, userData);
 
         if (tryStatus == curi_status_error)
-            *offset = initialOffset;
+            *offset = previousOffset;
         else
             status = tryStatus;
     }
